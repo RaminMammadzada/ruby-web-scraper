@@ -1,7 +1,10 @@
 require 'open-uri'
 require 'kimurai'
+require_relative '../lib/product'
 
 class Scraper < Kimurai::Base
+
+
   @name = "trendyol_spider"
   @engine = :selenium_chrome
   @start_urls = []
@@ -9,6 +12,8 @@ class Scraper < Kimurai::Base
   #     user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36",
   #     before_request: { delay: 1..3 }
   # }
+
+  @@all_products = []
 
   def parse(response, url:, data: {})
     counter = 0
@@ -31,10 +36,9 @@ class Scraper < Kimurai::Base
 
     sleep 1
 
-
     response.xpath(products_info_path).each do |element|
       p "COUNTER:: #{counter}"
-      parse_product_path(element)
+      @@all_products << parse_product_path(element)
       counter += 1
     end
 
@@ -42,53 +46,48 @@ class Scraper < Kimurai::Base
 
   def parse_product_path(product_path)
 
-    product = {}
+    product = Product.new
 
     data_id = product_path.attribute('data-id').value()
-    product[:id] = data_id
+    product.id = data_id
 
     image_url = product_path.css('.p-card-chldrn-cntnr').css('a').css('div').css('.p-card-img-wr').css('img').attribute('src').value()
-    product[:image] = image_url
+    product.image = image_url
 
     p "Data id: #{data_id}"
 
     product_brand = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-ttl').text
-    product[:brand] = product_brand
+    product.brand = product_brand
 
     product_name = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-name').text
-    product[:name] = product_name
+    product.name = product_name
 
     product_stars_path = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.star-w')
     product_total_stars = (0..4).inject do |total, num|
       total + product_stars_path[num].css('.full').attribute('style').value()[6..9].to_i
     end
     product_total_stars = ( product_total_stars + 100 ) / 100.00
-    product[:total_stars] = product_total_stars
+    product.total_stars = product_total_stars
 
-    product_total_review = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.ratingCount').text
-    product[:total_review] = product_total_review[1..-2]
+    product_total_reviews = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.ratingCount').text
+    product.total_reviews = product_total_reviews[1..-2]
 
     product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng').text
-    product[:normal_price] = product_normal_price
+    product.normal_price = product_normal_price
 
     product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prmtn-cntnr').css('.prc-box-dscntd').text
-    product[:last_price] = product_last_price
+    product.last_price = product_last_price
 
-    p "Image URL: #{image_url}"
-    p "Product name: #{product_name}"
-    p "Brand: #{product_brand}"
-    p "Product total star: #{product_total_stars}"
-    p "Product total review: #{product_total_review}"
-    p "Product normal price: #{product_normal_price}"
-    p "Product last price: #{product_last_price}"
-    p "+  +  +  +"
+    # p "Image URL: #{image_url}"
+    # p "Product name: #{product_name}"
+    # p "Brand: #{product_brand}"
+    # p "Product total star: #{product_total_stars}"
+    # p "Product total reviews: #{product_total_reviews}"
+    # p "Product normal price: #{product_normal_price}"
+    # p "Product last price: #{product_last_price}"
+    # p "+  +  +  +"
 
-
+    save_to "results.json", product.get_product, format: :pretty_json
     product
   end
-
-  # def self.scrape_product()
-  #
-  # end
-
 end

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "35895689",
+    "name": "Siyah Erkek Sneaker L15290500",
+    "brand": "Bambi",
+    "normal_price": "183,24 TL",
+    "last_price": "109,94 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200225/10/3497841/64137800/1/1_org.jpg",
+    "total_reviews": "15",
+    "total_stars": 4.93,
+    "position": 1
+  },
+  {
+    "id": "35895243",
+    "name": "Erkek Lacivert Espadril Ayakkabı L16551010",
+    "brand": "Bambi",
+    "normal_price": "166,58 TL",
+    "last_price": "99,95 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200224/16/3479526/64134719/1/1_org.jpg",
+    "total_reviews": "50",
+    "total_stars": 4.14,
+    "position": 2
+  },
+  {
+    "id": "35895236",
+    "name": "Erkek Bej Espadril Ayakkabı L16551010",
+    "brand": "Bambi",
+    "normal_price": "166,58 TL",
+    "last_price": "99,95 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200302/19/3982297/64134658/1/1_org.jpg",
+    "total_reviews": "25",
+    "total_stars": 3.8,
+    "position": 3
+  },
+  {
+    "id": "35895690",
+    "name": "Haki Erkek Sneaker L15290500",
+    "brand": "Bambi",
+    "normal_price": "183,24 TL",
+    "last_price": "109,94 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200226/10/3871320/64137815/1/1_org.jpg",
+    "total_reviews": "3",
+    "total_stars": 4.67,
+    "position": 4
+  },
+  {
+    "id": "35895241",
+    "name": "Erkek Bordo Espadril Ayakkabı L16551010",
+    "brand": "Bambi",
+    "normal_price": "166,58 TL",
+    "last_price": "99,95 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200302/19/3982297/64134716/1/1_org.jpg",
+    "total_reviews": "17",
+    "total_stars": 4.29,
+    "position": 5
+  },
+  {
+    "id": "35895048",
+    "name": "Haki Erkek Sneaker L15011612",
+    "brand": "Bambi",
+    "normal_price": "199,90 TL",
+    "last_price": "119,94 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200302/19/3982297/64133363/1/1_org.jpg",
+    "total_reviews": "1",
+    "total_stars": 5.0,
+    "position": 6
+  },
+  {
+    "id": "35895044",
+    "name": "Siyah Erkek Sneaker L15011612",
+    "brand": "Bambi",
+    "normal_price": "199,90 TL",
+    "last_price": "119,94 TL",
+    "image": "https://cdn.dsmcdn.com//assets/product/media/images/20200227/14/3914198/64133337/1/1_org.jpg",
+    "total_reviews": "1",
+    "total_stars": 5.0,
+    "position": 7
+  }
+]
