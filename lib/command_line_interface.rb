@@ -4,7 +4,8 @@ require 'nokogiri'
 require 'colorize'
 
 class CommandLineInterface
-  BASE_PATH = "https://www.trendyol.com/erkek+ayakkabi"
+  # BASE_PATH = "https://www.trendyol.com/erkek+ayakkabi"
+  BASE_PATH = "https://www.trendyol.com/erkek+casual-ayakkabi/bambi"
 
   def run
     make_products

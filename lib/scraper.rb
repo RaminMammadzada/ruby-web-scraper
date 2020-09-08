@@ -5,15 +5,33 @@ class Scraper < Kimurai::Base
   @name = "trendyol_spider"
   @engine = :selenium_chrome
   @start_urls = []
-  @config = {
-      user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36",
-      before_request: { delay: 1..3 }
-  }
+  # @config = {
+  #     user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36",
+  #     before_request: { delay: 1..3 }
+  # }
 
   def parse(response, url:, data: {})
     counter = 0
-    response.xpath("//div[@class='prdct-cntnr-wrppr']/div['p-card-wrppr']").each do |element|
 
+    products_info_path = "//div[@class='prdct-cntnr-wrppr']/div['p-card-wrppr']"
+    count = response.xpath(products_info_path).count
+
+    loop do
+      8.times {browser.execute_script("window.scrollBy(0,500)") ; sleep 3}
+      response = browser.current_response
+
+      new_count = response.xpath(products_info_path).count
+      if count == new_count
+        logger.info "> Pagination is done" and break
+      else
+        count = new_count
+        logger.info "> Continue scrolling, current count is #{count}..."
+      end
+    end
+
+    sleep 5
+
+    response.xpath(products_info_path).each do |element|
       p "COUNTER:: #{counter}"
       parse_category_page(element)
       counter += 1
