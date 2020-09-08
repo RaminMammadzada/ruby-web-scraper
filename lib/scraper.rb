@@ -23,7 +23,7 @@ class Scraper < Kimurai::Base
 
     if count == 0
       puts "There is no match for the keyword or price range you typed!".colorize(:color => :red, :background => :black)
-      puts "You should run the app again check you chance one more time!".colorize(:color => :red, :background => :black)
+      puts "You should run the app again and check your chance one more time!".colorize(:color => :red, :background => :black)
       exit
     end
 
@@ -82,7 +82,7 @@ class Scraper < Kimurai::Base
       product.total_reviews = product_total_reviews[1..-2]
     else
       product.total_stars = 0
-      product.total_reviews = 0
+      product.total_reviews = "0"
     end
 
 
