@@ -1,5 +1,5 @@
 class Product
-  attr_accessor :id, :name, :brand, :normal_price, :last_price, :image, :total_reviews, :total_stars
+  attr_accessor :id, :name, :brand, :normal_price, :last_price, :image, :total_reviews, :total_stars, :url
 
   def initialize()
     @id = nil
@@ -10,6 +10,7 @@ class Product
     @images = nil
     @amount_bought = nil
     @stars = nil
+    @url = nil
   end
 
   def get_product()
@@ -21,7 +22,7 @@ class Product
      :image => @image,
      :total_reviews => @total_reviews,
      :total_stars => @total_stars,
+     :url => @url
     }
   end
-
 end

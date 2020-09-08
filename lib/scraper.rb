@@ -51,18 +51,20 @@ class Scraper < Kimurai::Base
     data_id = product_path.attribute('data-id').value()
     product.id = data_id
 
-    image_url = product_path.css('.p-card-chldrn-cntnr').css('a').css('div').css('.p-card-img-wr').css('img').attribute('src').value()
+    product_path_focused =  product_path.css('.p-card-chldrn-cntnr').css('a')
+
+    image_url = product_path_focused.css('div').css('.p-card-img-wr').css('img').attribute('src').value()
     product.image = image_url
 
     p "Data id: #{data_id}"
 
-    product_brand = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-ttl').text
+    product_brand = product_path_focused.css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-ttl').text
     product.brand = product_brand
 
-    product_name = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-name').text
+    product_name = product_path_focused.css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-name').text
     product.name = product_name
 
-    product_stars_path = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.star-w')
+    product_stars_path = product_path_focused.css('.ratings').css('.star-w')
     if product_stars_path.to_s != ''
       product_total_stars = (0..4).inject do |total, num|
         total + product_stars_path[num].css('.full').attribute('style').value()[6..9].to_i
@@ -73,17 +75,20 @@ class Scraper < Kimurai::Base
       product.total_stars = 0
     end
 
-    product_total_reviews = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.ratingCount').text
+    product_total_reviews = product_path_focused.css('.ratings').css('.ratingCount').text
     product.total_reviews = product_total_reviews[1..-2]
 
-    product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
-    product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-orgnl').text if product_normal_price == ''
+    product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
+    product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-orgnl').text if product_normal_price == ''
     product.normal_price = product_normal_price
 
-    product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prmtn-cntnr').css('.prc-box-dscntd').text
-    product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prmtn-cntnr').css('.prc-box-sllng').text if product_last_price == ''
-    product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng').text if product_last_price == ''
+    product_last_price = product_path_focused.css('.prmtn-cntnr').css('.prc-box-dscntd').text
+    product_last_price = product_path_focused.css('.prmtn-cntnr').css('.prc-box-sllng').text if product_last_price == ''
+    product_last_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng').text if product_last_price == ''
     product.last_price = product_last_price
+
+    product_url = product_path_focused.attribute('href').value
+    product.url = "https://www.trendyol.com" + product_url
 
     # p "Image URL: #{image_url}"
     # p "Product name: #{product_name}"
