@@ -22,7 +22,7 @@ class Scraper < Kimurai::Base
     count = response.xpath(products_info_path).count
 
     loop do
-      1.times {browser.execute_script("window.scrollBy(0,500)") ; sleep 3}
+      8.times {browser.execute_script("window.scrollBy(0,500)") ; sleep 3}
       response = browser.current_response
 
       new_count = response.xpath(products_info_path).count
@@ -34,7 +34,7 @@ class Scraper < Kimurai::Base
       end
     end
 
-    sleep 1
+    sleep 2
 
     response.xpath(products_info_path).each do |element|
       p "COUNTER:: #{counter}"
@@ -63,19 +63,26 @@ class Scraper < Kimurai::Base
     product.name = product_name
 
     product_stars_path = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.star-w')
-    product_total_stars = (0..4).inject do |total, num|
-      total + product_stars_path[num].css('.full').attribute('style').value()[6..9].to_i
+    if product_stars_path.to_s != ''
+      product_total_stars = (0..4).inject do |total, num|
+        total + product_stars_path[num].css('.full').attribute('style').value()[6..9].to_i
+      end
+      product_total_stars = ( product_total_stars + 100 ) / 100.00
+      product.total_stars = product_total_stars
+    else
+      product.total_stars = 0
     end
-    product_total_stars = ( product_total_stars + 100 ) / 100.00
-    product.total_stars = product_total_stars
 
     product_total_reviews = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.ratingCount').text
     product.total_reviews = product_total_reviews[1..-2]
 
-    product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng').text
+    product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
+    product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-orgnl').text if product_normal_price == ''
     product.normal_price = product_normal_price
 
     product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prmtn-cntnr').css('.prc-box-dscntd').text
+    product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prmtn-cntnr').css('.prc-box-sllng').text if product_last_price == ''
+    product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng').text if product_last_price == ''
     product.last_price = product_last_price
 
     # p "Image URL: #{image_url}"
