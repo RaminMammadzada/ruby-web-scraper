@@ -21,6 +21,12 @@ class Scraper < Kimurai::Base
     products_info_path = "//div[@class='prdct-cntnr-wrppr']/div['p-card-wrppr']"
     count = response.xpath(products_info_path).count
 
+    if count == 0
+      puts "There is no match for the keyword or price range you typed!".colorize(:color => :red, :background => :black)
+      puts "You should run the app again check you chance one more time!".colorize(:color => :red, :background => :black)
+      exit
+    end
+
     loop do
       8.times {browser.execute_script("window.scrollBy(0,500)") ; sleep 3}
       response = browser.current_response
