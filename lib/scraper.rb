@@ -71,12 +71,15 @@ class Scraper < Kimurai::Base
       end
       product_total_stars = ( product_total_stars + 100 ) / 100.00
       product.total_stars = product_total_stars
+
+      product_total_reviews = product_path_focused.css('.ratings').css('.ratingCount').text
+      product.total_reviews = product_total_reviews[1..-2]
     else
       product.total_stars = 0
+      product.total_reviews = 0
     end
 
-    product_total_reviews = product_path_focused.css('.ratings').css('.ratingCount').text
-    product.total_reviews = product_total_reviews[1..-2]
+
 
     product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
     product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-orgnl').text if product_normal_price == ''
@@ -99,7 +102,7 @@ class Scraper < Kimurai::Base
     # p "Product last price: #{product_last_price}"
     # p "+  +  +  +"
 
-    save_to "results.json", product.get_product, format: :pretty_json
+    save_to "product_search_result.json", product.get_product, format: :pretty_json
     product
   end
 end
