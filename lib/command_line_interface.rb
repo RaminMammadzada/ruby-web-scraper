@@ -5,7 +5,10 @@ require 'colorize'
 
 class CommandLineInterface
   # BASE_PATH = "https://www.trendyol.com/erkek+ayakkabi"
-  BASE_PATH = "https://www.trendyol.com/erkek+casual-ayakkabi/bambi"
+  # BASE_PATH = "https://www.trendyol.com/erkek+casual-ayakkabi/bambi"
+  # BASE_PATH = "https://www.trendyol.com/erkek+casual-ayakkabi/bambi?fiyat=0-160"
+  BASE_PATH = "https://www.trendyol.com/erkek+casual-ayakkabi/bambi?fiyat=0-120"
+
 
   def run
     make_products

@@ -17,7 +17,7 @@ class Scraper < Kimurai::Base
     count = response.xpath(products_info_path).count
 
     loop do
-      8.times {browser.execute_script("window.scrollBy(0,500)") ; sleep 3}
+      1.times {browser.execute_script("window.scrollBy(0,500)") ; sleep 3}
       response = browser.current_response
 
       new_count = response.xpath(products_info_path).count
@@ -29,33 +29,62 @@ class Scraper < Kimurai::Base
       end
     end
 
-    sleep 5
+    sleep 1
+
 
     response.xpath(products_info_path).each do |element|
       p "COUNTER:: #{counter}"
-      parse_category_page(element)
+      parse_product_path(element)
       counter += 1
     end
 
   end
 
-  def parse_category_page(product_tag)
+  def parse_product_path(product_path)
 
-    data_id = product_tag.attribute('data-id').value()
+    product = {}
+
+    data_id = product_path.attribute('data-id').value()
+    product[:id] = data_id
+
+    image_url = product_path.css('.p-card-chldrn-cntnr').css('a').css('div').css('.p-card-img-wr').css('img').attribute('src').value()
+    product[:image] = image_url
+
     p "Data id: #{data_id}"
 
-    image_url= product_tag.css('.p-card-chldrn-cntnr').css('a').css('div').css('.p-card-img-wr').css('img').attribute('src').value()
-    element_b = product_tag.css('.p-card-chldrn-cntnr').css('a').css('div').css('.p-card-img-wr').css('img').attribute('alt').value()
+    product_brand = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-ttl').text
+    product[:brand] = product_brand
 
+    product_name = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-name').text
+    product[:name] = product_name
 
-    brand = product_tag.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-ttl').text
-    product_name = product_tag.css('.p-card-chldrn-cntnr').css('a').css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-name').text
+    product_stars_path = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.star-w')
+    product_total_stars = (0..4).inject do |total, num|
+      total + product_stars_path[num].css('.full').attribute('style').value()[6..9].to_i
+    end
+    product_total_stars = ( product_total_stars + 100 ) / 100.00
+    product[:total_stars] = product_total_stars
+
+    product_total_review = product_path.css('.p-card-chldrn-cntnr').css('a').css('.ratings').css('.ratingCount').text
+    product[:total_review] = product_total_review[1..-2]
+
+    product_normal_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prc-cntnr').css('.prc-box-sllng').text
+    product[:normal_price] = product_normal_price
+
+    product_last_price = product_path.css('.p-card-chldrn-cntnr').css('a').css('.prmtn-cntnr').css('.prc-box-dscntd').text
+    product[:last_price] = product_last_price
 
     p "Image URL: #{image_url}"
     p "Product name: #{product_name}"
-    p "Brand: #{brand}"
+    p "Brand: #{product_brand}"
+    p "Product total star: #{product_total_stars}"
+    p "Product total review: #{product_total_review}"
+    p "Product normal price: #{product_normal_price}"
+    p "Product last price: #{product_last_price}"
     p "+  +  +  +"
 
+
+    product
   end
 
   # def self.scrape_product()
