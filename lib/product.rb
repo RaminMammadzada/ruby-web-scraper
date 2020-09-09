@@ -1,6 +1,8 @@
 class Product
   attr_accessor :id, :name, :brand, :normal_price, :last_price, :image, :total_reviews, :total_stars, :url
 
+  public
+
   def initialize()
     @id = nil
     @name = nil

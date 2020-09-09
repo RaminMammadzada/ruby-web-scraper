@@ -1,9 +1,6 @@
 require_relative '../lib/scraper'
-require 'nokogiri'
 
 describe Scraper do
-  let(:scraper) {Scraper.new}
-
   describe '#parse' do
     it 'should start parsing and update the total product count after finishing' do
       path= "https://www.trendyol.com/hp+bilgisayar?fiyat=0-5000"

@@ -8,11 +8,15 @@ class CommandLineInterface
 
   @@BASE_PATH = "https://www.trendyol.com/"
 
+  public
+
   def run
-    interact_with_user
+    interact_with_user if @@BASE_PATH == "https://www.trendyol.com/"
     make_products
     compare_product_total_reviews
   end
+
+  private
 
   def make_products
     Scraper.start_urls << @@BASE_PATH
@@ -63,5 +67,9 @@ class CommandLineInterface
       puts "   - - - - - - -".colorize(:color => :light_yellow, :mode => :bold, :background => :light_black)
     end
 
+  end
+
+  def self.set_base_path(path)
+    @@BASE_PATH = path
   end
 end
