@@ -9,18 +9,18 @@ describe Product do
     end
 
     it 'should initiate all instance variables with values equal to nil' do
-      expect( product.get_product.values.all?(nil) ).to eql true
+      expect( product.getProduct.values.all?(nil) ).to eql true
     end
   end
 
-  describe '#get_product' do
+  describe '#getProduct' do
     it 'should return the hash type instance' do
-      expect( product.get_product ).to be_an_instance_of Hash
+      expect( product.getProduct ).to be_an_instance_of Hash
     end
 
     it 'should return the hash includes all of the instance variables' do
       instance_variables = [:id, :name, :brand, :normal_price, :last_price, :image, :total_reviews, :total_stars, :url]
-      expect( (product.get_product.keys & instance_variables).size == instance_variables.size ).to eql(true)
+      expect( (product.getProduct.keys & instance_variables).size == instance_variables.size ).to eql(true)
     end
   end
 

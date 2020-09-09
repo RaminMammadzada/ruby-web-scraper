@@ -13,7 +13,7 @@ class Product
     @url = nil
   end
 
-  def get_product()
+  def getProduct()
     {:id => @id,
      :name => @name,
      :brand => @brand,
