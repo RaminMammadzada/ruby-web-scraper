@@ -7,9 +7,9 @@ class Product
     @brand = nil
     @normal_price = nil
     @last_price = nil
-    @images = nil
-    @amount_bought = nil
-    @stars = nil
+    @image = nil
+    @total_reviews = nil
+    @total_stars = nil
     @url = nil
   end
 

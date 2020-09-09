@@ -9,10 +9,9 @@ class CommandLineInterface
   @@BASE_PATH = "https://www.trendyol.com/"
 
   def run
-
-    interact_with_user()
+    interact_with_user
     make_products
-    compare_product_total_reviews()
+    compare_product_total_reviews
   end
 
   def make_products
@@ -20,7 +19,7 @@ class CommandLineInterface
     Scraper.crawl!
   end
 
-  def interact_with_user()
+  def interact_with_user
     puts " This is an application to get the most 5 famous products in the spesific product category from Trendyol.com ".colorize(:color => :red, :background => :black)
     puts " Trendyol.com is one of the well known ecommerce platforms in Turkey. ".colorize(:color => :light_red, :background => :black)
     puts
@@ -46,7 +45,7 @@ class CommandLineInterface
     end
   end
 
-  def compare_product_total_reviews()
+  def compare_product_total_reviews
     file = File.read('product_search_result.json')
     array_of_product_hashes = JSON.parse(file)
 
