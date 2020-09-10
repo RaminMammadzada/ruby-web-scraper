@@ -54,11 +54,11 @@ You can also type ```ruby bin/main.rb``` in the root file of the project.
     - Enter the price range (you can also skip by pressing Enter)
     ![screenshot of step 2](./images/step2_screenshot.png)
     - Press Enter and wait some moment to get the results. The time to get the data depends on the total amount of products found.
-    ![screenshot of step 3](./images/step3_screenshot.png)
+        * ![screenshot of step 3](./images/step3_screenshot.png)
         - All of the fetched products' informations are saved to [product_search_result.json](product_search_result.json) file.
-        ![screenshot of step 3](images/step3b_screenshot.png)
-        - If there is no product found, then it means there is no matching category for your keywords or you gave the price range too narrow. You should run the app again and try other keywords or price range.
         ![screenshot of step 3](images/step3a_screenshot.png)
+        - If there is no product found, then it means there is no matching category for your keywords or you gave the price range too narrow. You should run the app again and try other keywords or price range.
+        ![screenshot of step 3](images/step3b_screenshot.png)
     - Here you go! You got the 5 most reviewed products with their information.
     ![screenshot of step 4](./images/step4_screenshot.png)
      
