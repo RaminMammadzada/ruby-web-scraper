@@ -40,7 +40,7 @@ class CommandLineInterface
     @@BASE_PATH += keywords_string_cleaned
 
     puts ""
-    puts " You can also specify price interval, like 50-200. It is in TL currency ".colorize(:color => :magenta, :background => :black)
+    puts " You can also specify price interval, like 50-200. It is in TL currency. ".colorize(:color => :magenta, :background => :black)
     puts " To decrease the amount of results and to get the answer fast, it is advised.    ".colorize(:color => :magenta, :background => :black)
     puts " Plase enter your price interval or just press enter ".colorize(:color => :magenta, :background => :black)
     price_interval = gets.chomp

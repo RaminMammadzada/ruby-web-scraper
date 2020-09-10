@@ -6,7 +6,7 @@ require 'colorized_string'
 
 class Scraper < Kimurai::Base
 
-  attr_accessor :total_product_count, :counter, :all_products, :start_urls
+  attr_accessor :start_urls
 
   @name = "trendyol_spider"
   @engine = :selenium_chrome
@@ -17,7 +17,6 @@ class Scraper < Kimurai::Base
   # }
 
   @@all_products = []
-  @@counter = 0
   @@total_product_count = 0
 
   public
@@ -60,10 +59,9 @@ class Scraper < Kimurai::Base
   def fillProducts(response, products_info_path)
     sleep 2
     response.xpath(products_info_path).each do |element|
-      @@counter += 1
       @@all_products << parseProductPath(element)
-      p ">>>>COUNTER: #{@@counter}"
     end
+    p ">> TOTAL PRODUCTS FETCHED: #{@@all_products.count}".colorize(:color => :light_red)
   end
 
   def parseProductPath(product_path)
