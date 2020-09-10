@@ -34,7 +34,7 @@ class Scraper < Kimurai::Base
     @@total_product_count
   end
 
-  def self.set_scroll(value)
+  def self.scroll(value)
     @@scroll = value
   end
 

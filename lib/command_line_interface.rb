@@ -4,7 +4,7 @@ require 'colorize'
 require 'colorized_string'
 require 'json'
 
-# rubocop:disable Naming/VariableName, Style/ClassVars, Layout/LineLength, Naming/MethodName
+# rubocop:disable Naming/VariableName, Style/ClassVars, Layout/LineLength
 class CommandLineInterface
   @@BASE_PATH = 'https://www.trendyol.com/'
 
@@ -14,7 +14,7 @@ class CommandLineInterface
     compare_product_total_reviews
   end
 
-  def self.set_base_path(path)
+  def self.base_path(path)
     @@BASE_PATH = path
   end
 
@@ -71,5 +71,5 @@ class CommandLineInterface
     end
   end
 end
-# rubocop:enable Naming/VariableName, Style/ClassVars, Layout/LineLength, Naming/MethodName
+# rubocop:enable Naming/VariableName, Style/ClassVars, Layout/LineLength
 #
