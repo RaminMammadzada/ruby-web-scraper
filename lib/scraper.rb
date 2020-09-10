@@ -4,7 +4,7 @@ require_relative '../lib/product'
 require 'colorize'
 require 'colorized_string'
 
-# rubocop:disable Style/ClassVars, Layout/LineLength, Naming/MethodName, Metrics/MethodLength, Metrics/AbcSize, Style/GuardClause
+# rubocop:disable Style/ClassVars, Layout/LineLength, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
 class Scraper < Kimurai::Base
   attr_accessor :start_urls
 
@@ -19,7 +19,7 @@ class Scraper < Kimurai::Base
   @@all_products = []
   @@total_product_count = 0
 
-  def parse(response)
+  def parse(response, url:, data: {})
     products_info_path = "//div[@class='prdct-cntnr-wrppr']/div['p-card-wrppr']"
     @@total_product_count = response.xpath(products_info_path).count
 
@@ -84,19 +84,7 @@ class Scraper < Kimurai::Base
 
     product.total_stars, product.total_reviews = addProductStarsAndReviews(product_path_focused)
 
-    product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
-    if product_normal_price == ''
-      product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-orgnl').text
-    end
-    product.normal_price = product_normal_price
-
-    product_last_price = product_path_focused.css('.prmtn-cntnr').css('.prc-box-dscntd').text
-    product_last_price = product_path_focused.css('.prmtn-cntnr').css('.prc-box-sllng').text if product_last_price == ''
-    product_last_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng').text if product_last_price == ''
-    if product_last_price == ''
-      product_last_price = product_path_focused.css('.price-promotion-container').css('.prc-box-dscntd').text
-    end
-    product.last_price = product_last_price
+    product.normal_price, product.last_price = addNormalAndLastPrice(product_path_focused)
 
     product_url = product_path_focused.attribute('href').value
     product.url = 'https://www.trendyol.com' + product_url
@@ -121,5 +109,20 @@ class Scraper < Kimurai::Base
     end
     [product_total_stars, product_total_reviews]
   end
+
+  def addNormalAndLastPrice(product_path_focused)
+    product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
+    if product_normal_price == ''
+      product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-orgnl').text
+    end
+
+    product_last_price = product_path_focused.css('.prmtn-cntnr').css('.prc-box-dscntd').text
+    product_last_price = product_path_focused.css('.prmtn-cntnr').css('.prc-box-sllng').text if product_last_price == ''
+    product_last_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng').text if product_last_price == ''
+    if product_last_price == ''
+      product_last_price = product_path_focused.css('.price-promotion-container').css('.prc-box-dscntd').text
+    end
+    [product_normal_price, product_last_price]
+  end
 end
-# rubocop:enable Style/ClassVars, Layout/LineLength, Naming/MethodName, Metrics/MethodLength, Metrics/AbcSize, Style/GuardClause
+# rubocop:enable Style/ClassVars, Layout/LineLength, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument

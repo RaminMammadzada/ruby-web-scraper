@@ -1,5 +1,6 @@
 require_relative '../lib/command_line_interface'
 require_relative '../lib/scraper'
+require 'kimurai'
 
 describe CommandLineInterface do
   let(:cmd_interface) { CommandLineInterface.new }

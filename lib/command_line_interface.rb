@@ -61,9 +61,9 @@ class CommandLineInterface
     top_items_count = array_of_product_hashes.count >= 5 ? 5 : array_of_product_hashes.count
     top_items_count.times do |index|
       product_hash = array_of_product_hashes[index]
-      puts((index + 1).to_s + ') ' + 'Product name: ' + product_hash['name']).colorize(color: :green, mode: :bold, background: :light_black)
-      puts('   Total reviews: ' + product_hash['total_reviews']).to_s.colorize(color: :green, mode: :bold, background: :light_black)
-      puts('   Product URL: ' + product_hash['url']).colorize(color: :green, mode: :bold, background: :light_black)
+      puts ((index + 1).to_s + ') ' + 'Product name: ' + product_hash['name']).colorize(color: :green, mode: :bold, background: :light_black)
+      puts ('   Total reviews: ' + product_hash['total_reviews']).to_s.colorize(color: :green, mode: :bold, background: :light_black)
+      puts ('   Product URL: ' + product_hash['url']).colorize(color: :green, mode: :bold, background: :light_black)
       puts '   - - - - - - -'.colorize(color: :light_yellow, mode: :bold, background: :light_black)
     end
   end
