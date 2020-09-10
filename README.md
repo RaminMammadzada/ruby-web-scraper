@@ -1,10 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-Microverse Ruby Project #3 -> Tic Tac Toe game (with Object Oriented Programming)
-
-# ruby-tic-tac-toe
-
-![screenshot](./images/output.png)
+# Microverse Ruby Capstone Project -> Custom Web Scraper
 
 This is a fashion follower application for helping individuals or companies to find out which kind of products are recommended more than other in the category if the interest.
 The project is a web scraper and uses [kimurai](https://github.com/vifreefly/kimuraframework) gem to fetch data from Single Page Application.
@@ -19,7 +15,7 @@ The category can be composed of several words, but it must be given in Turkish l
 - [x] Miltestone 4 - Scraping data from Single Page Application
 - [x] Miltestone 5 - Rspec tests
 
-# Rules To Run
+## Rules To Run
 
 - The category can be composed of several words, but it must be given in Turkish language. You can see the examples below:
 > If user enters ```hp bilgisar``` (computer means "bilgisayar" mean in Turkish) and 300-4000 as an price range, then it will search all computers with the hp brand that costs between 300 and 4000 Turkish Lira.
@@ -28,14 +24,14 @@ The category can be composed of several words, but it must be given in Turkish l
 
 ## Built With
 
-- Kimurai (in the backend of this gem [nokagiri](https://github.com/sparklemotion/nokogiri) gem is used)
+- Kimurai (it depends on [nokagiri](https://github.com/sparklemotion/nokogiri) gem)
 - Ruby
 - Rspec
 - Rubocop
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://repl.it/@remki/ruby-web-scraper#README.md)
 
 ## Getting Started
 
@@ -47,9 +43,12 @@ In order to run, you need to install RUBY in your computer. For windows you can 
 Then you can clone the project by typing ```git clone https://github.com/RaminMammadzada/ruby-web-scraper.git```
 
 ### Run app
-1. Type ```./bin/main.rb``` in the root file of the project. 
+1. In a terminal window type:
+    - ```gem install kimurai```
+    - ```gem install colorize```
+2. Type ```./bin/main.rb``` in the root file of the project. 
 You can also type ```ruby bin/main.rb``` in the root file of the project.
-2. Follow the instructions given in command line interface.
+3. Follow the instructions given in command line interface.
     - Enter the category keywords
     ![screenshot of step 1](./images/step1_screenshot.png)
     - Enter the price range (you can also skip by pressing Enter)
@@ -81,7 +80,8 @@ This script was tested using [RSpec](https://rspec.info/) which is a ruby testin
 ### Run the test
 - Open a terminal window and type ```rspec```
 - All tests should be passed:
-![screenshot of tests](./images/tests_screenshot.png)
+
+    ![screenshot of tests](./images/tests_screenshot.png)
 
 
 
