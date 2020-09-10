@@ -17,5 +17,8 @@ jobs:
           gem install --no-document rspec:'~>3.0'
           gem install --no-document kimurai
           gem install --no-document colorize
+          gem install chromedriver-helper
+          gem install selenium-webdriver
+
       - name: RSpec Report
         run: rspec --force-color --format documentation
