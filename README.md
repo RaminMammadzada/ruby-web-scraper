@@ -42,10 +42,27 @@ Besides the live demo link, you can run those functions in your own local enviro
 To run, you need to install RUBY on your computer. For windows, you can go to [Ruby installer](https://rubyinstaller.org/) and for MAC and LINUX you can go to [Ruby official site](https://www.ruby-lang.org/en/downloads/) for instructions on how to install it.
 Then you can clone the project by typing ```git clone https://github.com/RaminMammadzada/ruby-web-scraper.git```
 
+### Dependencies
+You must have ```chromedriver``` in your local development environment.
+- On Mac OS:
+   - ```brew install chromedriver```
+- On Linux,  and chromedriver (use proper path for your system and version):
+   - Install chrome first
+       -  ```wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ```
+       -  ```sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'```
+       -  ```apt-get update```
+       -  ```apt-get install google-chrome-stable```
+   - Insall chromedriver (use proper path for your system and version)
+       -  ```wget http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip```
+       -  ```unzip chromedriver_linux64.zip```
+       -  ```cp chromedriver /usr/local/bin```
+       -  ```chmod +x /usr/local/bin/chromedriver```
+
 ### Run app
 1. In a terminal window type:
     - ```gem install kimurai```
     - ```gem install colorize```
+    - ```gem install chrome-webdriver```
 2. Type ```./bin/main.rb``` in the root file of the project. 
 You can also type ```ruby bin/main.rb``` in the root file of the project.
 3. Follow the instructions given in the command-line interface.
