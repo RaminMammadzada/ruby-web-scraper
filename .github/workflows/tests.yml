@@ -17,15 +17,7 @@ jobs:
           gem install --no-document rspec:'~>3.0'
           gem install --no-document kimurai
           gem install --no-document colorize
-<<<<<<< HEAD
           gem install --no-document selenium-webdriver
 
-||||||| merged common ancestors
-=======
-
-          gem 'chromedriver-helper'
-          gem "selenium-webdriver"
-
->>>>>>> 6ea56a96614219cb86813e4ba47d07d89b45f843
       - name: RSpec Report
         run: rspec --force-color --format documentation
