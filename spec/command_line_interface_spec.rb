@@ -2,19 +2,18 @@ require_relative '../lib/command_line_interface'
 require_relative '../lib/scraper'
 
 describe CommandLineInterface do
-  let(:cmd_interface) {CommandLineInterface.new}
+  let(:cmd_interface) { CommandLineInterface.new }
 
   describe '#run' do
     it 'after interacting with user,should create products' do
-      CommandLineInterface.set_base_path("https://www.trendyol.com/hp+bilgisayar?fiyat=0-3000")
+      CommandLineInterface.setBasePath('https://www.trendyol.com/hp+bilgisayar?fiyat=0-3000')
       cmd_interface.run
       expect(Scraper.total_product_count).to_not eql 0
     end
 
     it 'should save products into product_search_result.json file' do
-      file_exist_and_filled = File.size?('product_search_result.json') != nil
+      file_exist_and_filled = !File.size?('product_search_result.json').nil?
       expect(file_exist_and_filled).to eql true
     end
-
   end
 end

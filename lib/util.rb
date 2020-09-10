@@ -1,5 +1,1 @@
-
-
-def count_stars(str)
-
-end
+def count_stars(str); end
