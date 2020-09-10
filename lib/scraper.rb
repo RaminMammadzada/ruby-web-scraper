@@ -4,7 +4,7 @@ require_relative '../lib/product'
 require 'colorize'
 require 'colorized_string'
 
-# rubocop:disable Style/ClassVars, Layout/LineLength, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
+# rubocop:disable Style/ClassVars, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
 class Scraper < Kimurai::Base
   attr_accessor :start_urls
 
@@ -121,4 +121,4 @@ class Scraper < Kimurai::Base
     [product_normal_price, product_last_price]
   end
 end
-# rubocop:enable Style/ClassVars, Layout/LineLength, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
+# rubocop:enable Style/ClassVars, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
