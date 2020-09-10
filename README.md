@@ -29,10 +29,6 @@ The category can be composed of several words, but it must be given in the Turki
 - Rspec
 - Rubocop
 
-## Live Demo
-
-[Live Demo Link](https://repl.it/@remki/ruby-web-scraper#README.md)
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
