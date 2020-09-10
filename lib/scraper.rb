@@ -66,7 +66,7 @@ class Scraper < Kimurai::Base
     response.xpath(products_info_path).each do |element|
       @@all_products << parseProductPath(element)
     end
-    p ">> TOTAL PRODUCTS FETCHED: #{@@all_products.count}".colorize(color: :light_red)
+    puts ">> TOTAL PRODUCTS FETCHED: #{@@all_products.count}".colorize(color: :light_red)
   end
 
   def parseProductPath(product_path)
