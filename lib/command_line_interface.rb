@@ -14,7 +14,7 @@ class CommandLineInterface
     compare_product_total_reviews
   end
 
-  def self.setBasePath(path)
+  def self.set_base_path(path)
     @@BASE_PATH = path
   end
 

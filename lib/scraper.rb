@@ -14,6 +14,7 @@ class Scraper < Kimurai::Base
 
   @@all_products = []
   @@total_product_count = 0
+  @@scroll = true
 
   def parse(response, url:, data: {})
     products_info_path = "//div[@class='prdct-cntnr-wrppr']/div['p-card-wrppr']"
@@ -25,12 +26,16 @@ class Scraper < Kimurai::Base
       exit
     end
 
-    last_response = scrollDownAndGetResponse(products_info_path)
+    last_response = @@scroll == true ? scrollDownAndGetResponse(products_info_path) : response.xpath(products_info_path)
     fillProducts(last_response, products_info_path)
   end
 
   def self.total_product_count
     @@total_product_count
+  end
+
+  def self.set_scroll(value)
+    @@scroll = value
   end
 
   private

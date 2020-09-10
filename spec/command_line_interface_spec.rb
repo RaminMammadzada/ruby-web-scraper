@@ -7,7 +7,9 @@ describe CommandLineInterface do
 
   describe '#run' do
     it 'after interacting with user,should create products' do
-      CommandLineInterface.setBasePath('https://www.trendyol.com/hp+bilgisayar?fiyat=0-3000')
+      path = 'https://www.trendyol.com/hp+bilgisayar?fiyat=0-3000'
+      CommandLineInterface.set_base_path(path)
+      Scraper.set_scroll( false )
       cmd_interface.run
       expect(Scraper.total_product_count).to_not eql 0
     end
