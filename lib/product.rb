@@ -1,4 +1,3 @@
-# rubocop:disable Naming/MethodName
 class Product
   attr_accessor :id, :name, :brand, :normal_price, :last_price, :image, :total_reviews, :total_stars, :url
 
@@ -14,7 +13,7 @@ class Product
     @url = nil
   end
 
-  def getProduct
+  def product
     { id: @id,
       name: @name,
       brand: @brand,
@@ -26,4 +25,3 @@ class Product
       url: @url }
   end
 end
-# rubocop:enable Naming/MethodName

@@ -4,7 +4,7 @@ require_relative '../lib/product'
 require 'colorize'
 require 'colorized_string'
 
-# rubocop:disable Style/ClassVars, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
+# rubocop:disable Style/ClassVars, Style/GuardClause, Lint/UnusedMethodArgument
 class Scraper < Kimurai::Base
   attr_accessor :start_urls
 
@@ -26,8 +26,9 @@ class Scraper < Kimurai::Base
       exit
     end
 
-    last_response = @@scroll == true ? scrollDownAndGetResponse(products_info_path) : response.xpath(products_info_path)
-    fillProducts(last_response, products_info_path)
+    scroll_cond = @@scroll == true
+    last_response = scroll_cond ? scroll_down_and_get_response(products_info_path) : response.xpath(products_info_path)
+    fill_products(last_response, products_info_path)
   end
 
   def self.total_product_count
@@ -40,7 +41,7 @@ class Scraper < Kimurai::Base
 
   private
 
-  def scrollDownAndGetResponse(products_info_path)
+  def scroll_down_and_get_response(products_info_path)
     puts '..:: The scrolling down in the Single Page App is started ::..'.colorize(color: :light_red)
     puts '..:: Please wait now, it may take a few minutes to finish ::..'.colorize(color: :light_red)
     response = ''
@@ -62,15 +63,15 @@ class Scraper < Kimurai::Base
     response
   end
 
-  def fillProducts(response, products_info_path)
+  def fill_products(response, products_info_path)
     sleep 2
     response.xpath(products_info_path).each do |element|
-      @@all_products << parseProductPath(element)
+      @@all_products << parse_product_path(element)
     end
     puts ">> TOTAL PRODUCTS FETCHED: #{@@all_products.count}".colorize(color: :light_red)
   end
 
-  def parseProductPath(product_path)
+  def parse_product_path(product_path)
     product = Product.new
 
     product.id = product_path.attribute('data-id').value
@@ -83,18 +84,18 @@ class Scraper < Kimurai::Base
 
     product.name = product_path_focused.css('.prdct-desc-cntnr-ttl-w').css('.prdct-desc-cntnr-name').text
 
-    product.total_stars, product.total_reviews = addProductStarsAndReviews(product_path_focused)
+    product.total_stars, product.total_reviews = add_product_stars_and_reviews(product_path_focused)
 
-    product.normal_price, product.last_price = addNormalAndLastPrice(product_path_focused)
+    product.normal_price, product.last_price = add_normal_and_last_price(product_path_focused)
 
     product_url = product_path_focused.attribute('href').value
     product.url = 'https://www.trendyol.com' + product_url
 
-    save_to 'product_search_result.json', product.getProduct, format: :pretty_json
+    save_to 'product_search_result.json', product.product, format: :pretty_json
     product
   end
 
-  def addProductStarsAndReviews(product_path_focused)
+  def add_product_stars_and_reviews(product_path_focused)
     product_stars_path = product_path_focused.css('.ratings').css('.star-w')
     if product_stars_path.to_s != ''
       product_total_stars = (0..4).inject do |total, num|
@@ -111,7 +112,7 @@ class Scraper < Kimurai::Base
     [product_total_stars, product_total_reviews]
   end
 
-  def addNormalAndLastPrice(product_path_focused)
+  def add_normal_and_last_price(product_path_focused)
     product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-sllng-w-dscntd').text
     if product_normal_price == ''
       product_normal_price = product_path_focused.css('.prc-cntnr').css('.prc-box-orgnl').text
@@ -126,4 +127,4 @@ class Scraper < Kimurai::Base
     [product_normal_price, product_last_price]
   end
 end
-# rubocop:enable Style/ClassVars, Naming/MethodName, Style/GuardClause, Lint/UnusedMethodArgument
+# rubocop:enable Style/ClassVars, Style/GuardClause, Lint/UnusedMethodArgument
