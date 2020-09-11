@@ -45,6 +45,8 @@ Then you can clone the project by typing ```git clone https://github.com/RaminMa
 
 ### Dependencies
 You must install the dependendies by bundling the Gemfile:
+   - First fo the root of the project by typing ```cd ruby-web-scraper```
+   - Go to the ```feature``` branch by typing ```git checkout feature```
    - ```gem install bundler```
    - ```bundle update```
    - ```bundle install```
@@ -65,11 +67,12 @@ You must also have ```chromedriver``` in your local development environment, oth
        -  ```sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'```
        -  ```apt-get update```
        -  ```apt-get install google-chrome-stable```
-   - Install chromedriver (use proper path for your system and version)
-       ```cd /tmp```
-       ```wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip```
-       ```sudo unzip chromedriver_linux64.zip -d /usr/local/bin```
-       ```rm -f chromedriver_linux64.zip```
+   - Install chromedriver ( **use proper path for your system and version, this versin may not work for you** )
+       - ```cd /tmp```
+       - ```wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip```
+       - ```sudo unzip chromedriver_linux64.zip -d /usr/local/bin```
+       - ```rm -f chromedriver_linux64.zip```
+       - Now you can leave ```tmp``` directory.
 
 ### Run app
 1. In a terminal window type:
