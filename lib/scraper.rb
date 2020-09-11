@@ -11,6 +11,9 @@ class Scraper < Kimurai::Base
   @name = 'trendyol_spider'
   @engine = :selenium_chrome
   @start_urls = []
+  @config = {
+      user_agent: "Chrome/68.0.3440.84"
+  }
 
   @@all_products = []
   @@total_product_count = 0
@@ -45,6 +48,7 @@ class Scraper < Kimurai::Base
     puts '..:: The scrolling down in the Single Page App is started ::..'.colorize(color: :light_red)
     puts '..:: Please wait now, it may take a few minutes to finish ::..'.colorize(color: :light_red)
     response = ''
+
     loop do
       8.times do
         browser.execute_script('window.scrollBy(0,500)')
