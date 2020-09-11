@@ -44,12 +44,12 @@ To run, you need to install RUBY on your computer. For windows, you can go to [R
 Then you can clone the project by typing ```git clone https://github.com/RaminMammadzada/ruby-web-scraper.git```
 
 ### Dependencies
-You must install the following gems:
-   - ```gem install kimurai```
-   - ```gem install colorize```
-   - ```gem install chrome-webdriver```
+You must install the dependendies by bundling the Gemfile:
+   - ```gem install bundler```
+   - ```bundle update```
+   - ```bundle install```
 
-You must also have ```chromedriver``` in your local development environment, otherwise you will get the error.
+You must also have ```chromedriver``` in your local development environment, otherwise you will get the error. It cannot be installed as a ruby gem.
 - On Mac OS:
    - Method 1: with ```brew```
        - ```brew install chromedriver```
