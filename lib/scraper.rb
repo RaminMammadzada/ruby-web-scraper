@@ -11,9 +11,6 @@ class Scraper < Kimurai::Base
   @name = 'trendyol_spider'
   @engine = :selenium_chrome
   @start_urls = []
-  @config = {
-      user_agent: "Chrome/68.0.3440.84"
-  }
 
   @@all_products = []
   @@total_product_count = 0

@@ -49,7 +49,7 @@ You must install the following gems:
    - ```gem install colorize```
    - ```gem install chrome-webdriver```
 
-You must also have ```chromedriver``` in your local development environment.
+You must also have ```chromedriver``` in your local development environment, otherwise you will get the error.
 - On Mac OS:
    - Method 1: with ```brew```
        - ```brew install chromedriver```
@@ -65,11 +65,11 @@ You must also have ```chromedriver``` in your local development environment.
        -  ```sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'```
        -  ```apt-get update```
        -  ```apt-get install google-chrome-stable```
-   - Insall chromedriver (use proper path for your system and version)
-       -  ```wget http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux64.zip```
-       -  ```unzip chromedriver_linux64.zip```
-       -  ```cp chromedriver /usr/local/bin```
-       -  ```chmod +x /usr/local/bin/chromedriver```
+   - Install chromedriver (use proper path for your system and version)
+       ```cd /tmp```
+       ```wget https://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip```
+       ```sudo unzip chromedriver_linux64.zip -d /usr/local/bin```
+       ```rm -f chromedriver_linux64.zip```
 
 ### Run app
 1. In a terminal window type:
@@ -89,10 +89,7 @@ You must also have ```chromedriver``` in your local development environment.
         ![screenshot of step 3](images/step3b_screenshot.png)
     - Here you go! You got the 5 most reviewed products with their information.
     ![screenshot of step 4](./images/step4_screenshot.png)
-     
-### Run tests
-In the terminal you just have to put the following command: 
-```rspec```
+
 
 ## Testing the script
 
