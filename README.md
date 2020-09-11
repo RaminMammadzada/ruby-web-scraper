@@ -15,6 +15,10 @@ The category can be composed of several words, but it must be given in the Turki
 - [x] Milestone 4 - Scraping data from Single Page Application
 - [x] Milestone 5 - Rspec tests
 
+## Video Presentation
+
+- https://www.loom.com/share/7d2f67baa3fa4efcb17f9feaeb6d6960
+
 ## Rules To Run
 
 - The category can be composed of several words, but it must be given in the Turkish language. You can see the examples below:
