@@ -41,7 +41,14 @@ Then you can clone the project by typing ```git clone https://github.com/RaminMa
 ### Dependencies
 You must have ```chromedriver``` in your local development environment.
 - On Mac OS:
-   - ```brew install chromedriver```
+   - Method 1: with ```brew```
+       - ```brew install chromedriver```
+   - Method 2: normal installation
+       - ```curl http://chromedriver.storage.googleapis.com/2.38/chromedriver_mac64.zip -o chromedriver_mac64.zip```
+       - ```unzip chromedriver_mac64.zip```
+       - ```mv chromedriver /usr/local/bin```
+       - ```chmod +x /usr/local/bin/chromedriver```
+       
 - On Linux,  and chromedriver (use proper path for your system and version):
    - Install chrome first
        -  ```wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ```
